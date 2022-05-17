@@ -2,13 +2,13 @@
 
 var numberStudents = function numberStudents() {
   // функция ввода числа студентов
-  var i = 1;
+  var number;
+  var cacheIsNan;
 
   do {
     number = +prompt('How many students are in your class?');
     cacheIsNan = isNaN(number);
     console.log("Number of students ".concat(number));
-    i++;
   } while (cacheIsNan);
 
   return number;
@@ -17,19 +17,19 @@ var numberStudents = function numberStudents() {
 
 var randomArray = function randomArray(lengthArray) {
   // функция генерации массива random от 1 до 12
-  PrimeList = new Array(lengthArray);
+  var primeList = new Array(lengthArray);
 
-  for (var i = 0; i < PrimeList.length; i++) {
-    PrimeList[i] = Math.floor(Math.random() * 12) + 1;
+  for (var i = 0; i < primeList.length; i++) {
+    primeList[i] = Math.floor(Math.random() * 12) + 1;
   }
 
-  return PrimeList;
+  return primeList;
 }; //--------------------------------------------------------------------------------------
 
 
 var generatingList = function generatingList(n) {
   // функция генерации массива студентов  
-  listStudentsArray = new Array(n);
+  var listStudentsArray = new Array(n);
   var marks = 10;
   var numbering = 1;
 
@@ -47,17 +47,18 @@ var generatingList = function generatingList(n) {
 
 var searchBestStudent = function searchBestStudent(arrayStudents) {
   //лучший студент 
-  var BestStudent = arrayStudents[0];
+  var bestStudent = arrayStudents[0];
 
   for (var i = 1; i < arrayStudents.length; i++) {
-    if (BestStudent.average < arrayStudents[i].average) {
-      BestStudent = arrayStudents[i];
+    if (bestStudent.average < arrayStudents[i].average) ;
+    {
+      bestStudent = arrayStudents[i];
     }
   }
 
-  document.write('  ' + "Best student" + '  ' + "".concat(BestStudent.studentName) + '<br>' + "Average score" + '  ' + "".concat(BestStudent.average));
-  console.log(BestStudent);
-  return BestStudent;
+  document.write('  ' + "Best student" + '  ' + "".concat(bestStudent.studentName) + '<br>' + "Average score" + '  ' + "".concat(bestStudent.average));
+  console.log(bestStudent);
+  return bestStudent;
 }; //--------------------------------------------------------------------------------------
 
 
@@ -73,7 +74,7 @@ function averageMark(averageList) {
     }
   }
 
-  GetFullList(averageList);
+  getFullList(averageList);
   console.log(averageList);
   return averageList;
 } //--------------------------------------------------------------------------------------
@@ -81,16 +82,16 @@ function averageMark(averageList) {
 
 function searchDebtors(listDebtors) {
   //Список должников 
-  newListDebtors = [];
+  var newListDebtors = [];
 
   for (var i = 0; i < listDebtors.length; i++) {
     if (listDebtors[i].average < 7) {
-      debtors = listDebtors[i];
+      var debtors = listDebtors[i];
       newListDebtors.push(debtors);
     }
   }
 
-  GetFullList(newListDebtors);
+  getFullList(newListDebtors);
   console.log(newListDebtors);
   return newListDebtors;
 } //--------------------------------------------------------------------------------------
@@ -113,7 +114,7 @@ function progressSorting(progressList) {
     if (!wasSwap) break;
   }
 
-  GetFullList(progressList);
+  getFullList(progressList);
   console.log(progressList);
   return progressList;
 } //--------------------------------------------------------------------------------------
@@ -127,7 +128,7 @@ function addNewStudent(students) {
     marks: randomArray(marks)
   };
   students.push(newStudent);
-  GetFullList(students);
+  getFullList(students);
   console.log(students);
   return students;
 } //--------------------------------------------------------------------------------------
@@ -137,7 +138,6 @@ function main() {
   var listStudents = generatingList(numberStudents());
   console.log(listStudents);
   var listAverageMark = averageMark(listStudents);
-  var i = 1;
 
   do {
     var operation = +prompt("What do you want to do? Choose a number of operation:\n        1. Best student\n        2. Grade list\n        3. Average score\n        4. List of debtors\n        5. Add new student");
@@ -169,22 +169,21 @@ function main() {
     }
 
     console.log("Number of operation ".concat(operation));
-    i++;
   } while (confirm("Do you want to repeat the operation selection?"));
 }
 
 main();
 
-function GetFullParam(userName) {
+function getFullParam(userName) {
   // Вывод студентов в список 
   return '<li>' + "Student's name" + '  ' + "".concat(userName.studentName) + '  ' + '-' + '  ' + "Average score:" + '  ' + "".concat(userName.average) + '</li>';
 }
 
-function GetFullList(user) {
-  content = '';
+function getFullList(user) {
+  var content = '';
 
   for (var i = 0; i < user.length; i++) {
-    content = content + GetFullParam(user[i]);
+    content = content + getFullParam(user[i]);
   }
 
   document.write('<ul>' + content + '</ul>');

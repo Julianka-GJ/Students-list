@@ -1,12 +1,12 @@
 
 let numberStudents = function() {  // функция ввода числа студентов
-    let i=1;
+    let number;
+    let cacheIsNan;
     do {
-        number = +prompt('How many students are in your class?')
-        cacheIsNan=isNaN(number); 
+        number = +prompt('How many students are in your class?');
+        cacheIsNan = isNaN(number); 
         console.log(`Number of students ${number}`);
-        i++;
-    } while (cacheIsNan)
+    } while (cacheIsNan);
 
     return number;
   }
@@ -14,18 +14,18 @@ let numberStudents = function() {  // функция ввода числа ст�
 //--------------------------------------------------------------------------------------
 
 let randomArray = function(lengthArray) {  // функция генерации массива random от 1 до 12
-    PrimeList = new Array(lengthArray);
-    for (let i=0; i<PrimeList.length; i++) {
-        PrimeList[i] = Math.floor(Math.random()*12)+1;
+    let primeList = new Array(lengthArray);
+    for (let i=0; i<primeList.length; i++) {
+        primeList[i] = Math.floor(Math.random()*12)+1;
     }
 
-    return PrimeList; 
+    return primeList; 
 }
 
 //--------------------------------------------------------------------------------------
 
 let generatingList = function(n) {    // функция генерации массива студентов  
-    listStudentsArray = new Array(n);
+    let listStudentsArray = new Array(n);
     let marks = 10;
     let numbering = 1;
     for (let i = 0; i<listStudentsArray.length; i++) { 
@@ -43,16 +43,16 @@ let generatingList = function(n) {    // функция генерации ма�
 //--------------------------------------------------------------------------------------
 
 let searchBestStudent = function(arrayStudents) {  //лучший студент 
-    let BestStudent = arrayStudents[0];
+    let bestStudent = arrayStudents[0];
     for (let i = 1; i<arrayStudents.length; i++) {
-        if(BestStudent.average < arrayStudents[i].average) {
-            BestStudent = arrayStudents[i];
+        if(bestStudent.average < arrayStudents[i].average); {
+            bestStudent = arrayStudents[i];
         }
     }
     
-    document.write('  ' + `Best student` + '  ' + `${BestStudent.studentName}` + '<br>' + `Average score` + '  ' + `${BestStudent.average}`);
-    console.log(BestStudent);
-    return BestStudent;
+    document.write('  ' + `Best student` + '  ' + `${bestStudent.studentName}` + '<br>' + `Average score` + '  ' + `${bestStudent.average}`);
+    console.log(bestStudent);
+    return bestStudent;
 }
 
 //--------------------------------------------------------------------------------------
@@ -60,14 +60,14 @@ let searchBestStudent = function(arrayStudents) {  //лучший студент
 function averageMark (averageList) {               //Средняя оценка 
     for (let i = 0; i<averageList.length; i++) {
         let sum = 0;
-        let listMarks = averageList[i]['marks']
+        let listMarks = averageList[i]['marks'];
         for (let j = 0; j<listMarks.length; j++) {
             sum += averageList[i]['marks'][j];
             averageList[i].average = sum/listMarks.length;
         }
     }
 
-    GetFullList(averageList);
+    getFullList(averageList);
     console.log(averageList);
     return averageList;
 }
@@ -75,15 +75,15 @@ function averageMark (averageList) {               //Средняя оценка
 //--------------------------------------------------------------------------------------
 
 function searchDebtors(listDebtors) {   //Список должников 
-    newListDebtors = [];
+    let newListDebtors = [];
     for (let i = 0; i<listDebtors.length; i++) {
         if(listDebtors[i].average < 7) {
-            debtors = listDebtors[i];
+            let debtors = listDebtors[i];
             newListDebtors.push(debtors);
         }
     }
 
-    GetFullList(newListDebtors);
+    getFullList(newListDebtors);
     console.log(newListDebtors);
     return newListDebtors;
 }
@@ -102,7 +102,7 @@ function progressSorting(progressList) {   // список успеваемос�
         if (!wasSwap) break;
     }
 
-    GetFullList(progressList);
+    getFullList(progressList);
     console.log(progressList);
     return progressList;
 }
@@ -117,7 +117,7 @@ function addNewStudent(students) {    //Добавление нового сту
     };
     students.push(newStudent);
 
-    GetFullList(students);
+    getFullList(students);
     
     console.log(students);
     return students;
@@ -130,7 +130,6 @@ function main() {
     console.log(listStudents);
     let listAverageMark = averageMark(listStudents);
     
-    let i=1;
     do {
         let operation = +prompt(`What do you want to do? Choose a number of operation:
         1. Best student
@@ -147,25 +146,23 @@ function main() {
         case 5: addNewStudent(listAverageMark); break;
         default: alert(`Wrong operation!`); break;
     }
-
         console.log(`Number of operation ${operation}`);
-        i++;
 
-    } while (confirm(`Do you want to repeat the operation selection?`))
+    } while (confirm(`Do you want to repeat the operation selection?`));
 }
 
 main()
 
-function GetFullParam(userName) {    // Вывод студентов в список 
+function getFullParam(userName) {    // Вывод студентов в список 
     return '<li>' + `Student's name` + '  ' + `${userName.studentName}` + '  ' + '-' + '  ' + `Average score:` + '  ' + `${userName.average}` + '</li>';
 }
 
-function GetFullList(user) {
-    content = '';
+function getFullList(user) {
+    let content = '';
     for (let i=0; i<user.length; i++) {
-        content = content + GetFullParam(user[i]);
+        content = content + getFullParam(user[i]);
     }
-    document.write('<ul>' + content + '</ul>')
+    document.write('<ul>' + content + '</ul>');
 }
 
 
