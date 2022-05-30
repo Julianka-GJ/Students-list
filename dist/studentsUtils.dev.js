@@ -113,7 +113,7 @@ function averageMark(averageList) {
 
     for (var j = 0; j < listMarks.length; j++) {
       sum += averageList[i]['marks'][j];
-      averageList[i].average = sum / listMarks.length;
+      averageList[i].average = (sum / listMarks.length).toFixed(1);
     }
   }
 
